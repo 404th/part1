@@ -7,6 +7,7 @@ function App() {
 	const [ overall, setOverall ] = useState({
 		average: 0,
 		positive: 0,
+		all: 0,
 		isTouched: false,
 	})
 
@@ -62,9 +63,10 @@ function App() {
 			positive = feedbacks.good/summ
 		}
 		setOverall({
+			...overall,
 			average,
 			positive,
-			isTouched: true,
+			all: summ,
 		})
 	}, [ feedbacks ] )
 
@@ -73,6 +75,7 @@ function App() {
   		<div>
 			<Header />
 			<Action clickGood={clickGood} clickNeutral={clickNeutral} clickBad={clickBad} />
+			<h2>Statistics</h2>
 			<Statistics feedbacks={feedbacks} overall={overall} />
 		</div>
 	)
